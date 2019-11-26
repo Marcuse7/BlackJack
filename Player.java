@@ -18,4 +18,5 @@ public class Player {
         System.out.println(mycards.toString());
     }
 
-}
+} // Ende class
+
