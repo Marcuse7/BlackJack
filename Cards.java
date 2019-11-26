@@ -1,18 +1,18 @@
 public class Cards {
 
     // attributes
-    private String Card;
+    private String card;
     private int value;
 
     // constructors
-    public Cards(String Card, int value) {
-        this.Card = Card;
+    public Cards(String card, int value) {
+        this.card = card;
         this.value = value;
     }
 
     // getters
     public String getCard() {
-        return Card;
+        return card;
     }
     public int getValue() {
         return value;
@@ -20,14 +20,15 @@ public class Cards {
 
     // setters
     public void setCard(String Card) {
-        this.Card = Card;
+        this.card = card;
     }
     public void setValue(int value) {
         this.value = value;
     }
 
-    public int drawCard() {
+    public static int drawCard() {
         return 11;
     }
+
 
 }
