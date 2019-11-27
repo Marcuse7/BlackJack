@@ -17,6 +17,7 @@ class Play {
             Card tempCard = Stack.giveCard(); // card extracted from stack
             player.takeCard(tempCard); // this very card given to player
             System.out.println(player.toString()); // print out hand
+            System.out.println(player.getSum()); // print out sum
             // Code für Wert von Assen
             drawCounterPlayer++;
         }
@@ -44,10 +45,11 @@ class Play {
             Scanner playerChoice = new Scanner(System.in);
             char yesOrNo;
             System.out.print("Möchtest du eine Karte ziehen? Tippe j oder n: ");
-            yesOrNo = playerChoice.nextChar().toLowerCase();
+            yesOrNo = playerChoice.next().charAt(0);
             if (yesOrNo == 'j') {
-                Participant.takeCard();
-                System.out.println("Ok, hier kommt die nächste Karte:" + Card.value + Card.number + Card. color);
+                Card tempCard = Stack.giveCard(); // card extracted from stack
+                player.takeCard(tempCard); // this very card given to player
+                System.out.println("Ok, hier kommt die nächste Karte:" + tempCard.getValue() + tempCard.getNumber() + tempCard.getColor());
             }
            
         }
