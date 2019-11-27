@@ -44,6 +44,8 @@ class Play {
         
         if (dealer.getSum() > 21) {
             System.out.println("The dealer lost! You win!!!");
+            System.out.println("Dealer:");
+            System.out.print(dealer.toString());
             // code for restarting game
         }
 
@@ -65,6 +67,7 @@ class Play {
                 if (player.getSum() > 21) {
                     System.out.println("Sorry. You lost!");
                     wannaDraw = false;
+                    // code for restarting game
                 }
 
                 //System.out.println("Ok, hier kommt die nächste Karte:" + tempCard.getValue() + tempCard.getNumber() + tempCard.getColor());
@@ -78,7 +81,38 @@ class Play {
         System.out.println("Dealer:");
         System.out.print(dealer.toString());
 
-        //if (player.getSum() > )
+        wannaDraw = true;
+        while (wannaDraw) {
+            if (dealer.getSum() >= 17) {
+            System.out.println("The dealer stops");
+            wannaDraw = false;
+            }
+            else if (dealer.getSum() <= 16) {
+                tempCard = Stack.giveCard();
+                dealer.takeCard(tempCard);
+                System.out.print(dealer.toString());
+                
+                if (dealer.getSum() > 21) {
+                    System.out.println("Du gewinnst mit " + player.getSum() + " " + dealer.getSum());
+            }
+            if (tempCard.getNumber() == 0 && (dealer.getSum() + 11) >= 17 && (dealer.getSum() + 11) <= 21) {
+                wannaDraw = false;
+            }
+            System.out.print(dealer.toString());
+            }
 
+        if (player.getSum() > dealer.getSum()) {
+            System.out.println("Du gewinnst mit " + player.getSum() + " zu " + dealer.getSum());
+            wannaDraw = false;
+        }
+        else if (player.getSum() < dealer.getSum()) {
+            System.out.println("Du verlierst mit " + dealer.getSum() + " zu " + player.getSum());
+            wannaDraw = false;
+        }
+        else {
+
+        }
+
+        }
     }
 }                        
