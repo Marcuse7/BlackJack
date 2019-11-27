@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 class Participant{
 
-    private ArrayList<Card> cardsHand;
+    private ArrayList<Card> cardsHand = new ArrayList<>();
 
     public String toString(){
         String allCards = "";
