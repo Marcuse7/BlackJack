@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Paricipant{
 
     private ArrayList<Card> cards;
