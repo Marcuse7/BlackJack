@@ -25,7 +25,7 @@ class Participant{
     } // Ende getSum
 
     public void takeCard(Card card){
-        cardsHand.add(Stack.giveCard());
+        cardsHand.add(card);
 
     } // Ende takeCard
 
