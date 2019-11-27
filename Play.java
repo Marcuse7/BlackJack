@@ -15,6 +15,8 @@ class Play {
         // Player's turn
         while (drawCounterPlayer < 2) { // two cards given to player
             Card tempCard = Stack.giveCard(); // card extracted from stack
+            // System.out.println("Ok, hier kommt die nächste Karte:" + tempCard.getValue() + " - " + tempCard.getNumber() + " - " + tempCard.getColor());
+
             player.takeCard(tempCard); // this very card given to player
             System.out.println(player.toString()); // print out hand
             System.out.println(player.getSum()); // print out sum
