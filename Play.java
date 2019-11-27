@@ -7,7 +7,6 @@ class Play {
         Participant player = new Participant();
 
         int drawCounterPlayer = 0; // limits how often the player draws cards
-        int drawCounterDealer = 0; // limits how often the dealer draws cards
 
         // shuffles the card deck
         Stack.shuffle();
@@ -30,13 +29,13 @@ class Play {
         }
 
         // Dealer's turn
-        while (drawCounterDealer < 2) { // two cards given to dealer
-            Card tempCard = Stack.giveCard();
-            dealer.takeCard(tempCard);
-            System.out.println(dealer.toString());
-            drawCounterDealer++;
-        }
-
+        Card tempCard = Stack.giveCard();
+        dealer.takeCard(tempCard);
+        System.out.println(dealer.toString());
+        tempCard = Stack.giveCard();
+        dealer.takeCard(tempCard);
+        System.out.println("*");
+        
         if (dealer.getSum() > 21) {
             System.out.println("The dealer lost! You win!!!");
             // code for restarting game
@@ -49,7 +48,7 @@ class Play {
             System.out.print("Möchtest du eine Karte ziehen? Tippe j oder n: ");
             yesOrNo = playerChoice.next().charAt(0);
             if (yesOrNo == 'j') {
-                Card tempCard = Stack.giveCard(); // card extracted from stack
+                tempCard = Stack.giveCard(); // card extracted from stack
                 player.takeCard(tempCard); // this very card given to player
                 System.out.println("Ok, hier kommt die nächste Karte:" + tempCard.getValue() + tempCard.getNumber() + tempCard.getColor());
             }
