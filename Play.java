@@ -13,10 +13,10 @@ class Play {
         Stack.shuffle();
 
         // Player's turn
-        while (drawCounterPlayer < 2) {
-            Card tempCard = Stack.giveCard();
-            player.takeCard(tempCard);
-            System.out.println(player.toString());
+        while (drawCounterPlayer < 2) { // two cards given to player
+            Card tempCard = Stack.giveCard(); // card extracted from stack
+            player.takeCard(tempCard); // this very card given to player
+            System.out.println(player.toString()); // print out hand
             // Code für Wert von Assen
             drawCounterPlayer++;
         }
@@ -27,7 +27,7 @@ class Play {
         }
 
         // Dealer's turn
-        while (drawCounterDealer < 2) {
+        while (drawCounterDealer < 2) { // two cards given to dealer
             Card tempCard = Stack.giveCard();
             dealer.takeCard(tempCard);
             System.out.println(dealer.toString());
@@ -44,8 +44,8 @@ class Play {
             Scanner playerChoice = new Scanner(System.in);
             char yesOrNo;
             System.out.print("Möchtest du eine Karte ziehen? Tippe j oder n: ");
-            yesOrNo = playerChoice.nextChar();
-            if (yesOrNo == "j") {
+            yesOrNo = playerChoice.nextChar().toLowerCase();
+            if (yesOrNo == 'j') {
                 Participant.takeCard();
                 System.out.println("Ok, hier kommt die nächste Karte:" + Card.value + Card.number + Card. color);
             }
