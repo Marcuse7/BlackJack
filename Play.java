@@ -11,13 +11,12 @@ class Play {
         // int playerScore = 0; // the score of the player's cards
         // int dealerScore = 0; // the score of the dealer's cards
 
-        // Stack stack = new Stack();
-        Card tempCard = new Card();
+        Stack.shuffle();
 
         // Player's turn
         while (drawCounterPlayer < 2) {
-            tempCard = stack.giveCard();
-            player.takeCard(tempCard);
+            Card tempCard = Stack.giveCard();
+            player.drawCard(tempCard);
             System.out.println(player.toString());
             // Code für Wert von Assen
             drawCounterPlayer++;
@@ -30,8 +29,8 @@ class Play {
 
         // Dealer's turn
         while (drawCounterDealer < 2) {
-            tempCard = stack.giveCard();
-            dealer.takeCard(tempCard);
+            Card tempCard = Stack.giveCard();
+            dealer.drawCard(tempCard);
             System.out.println(dealer.toString());
             drawCounterDealer++;
         }
