@@ -3,6 +3,8 @@ import java.util.*;
 public class Stack {
 
     // attributes
+    private static ArrayList<Card> cards = new ArrayList<>();
+    
     public static void shuffle() {
         // 6 x 52 Blatt (4 Sorten 2 bis Ass)
         int v = 0;
