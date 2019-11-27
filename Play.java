@@ -1,3 +1,5 @@
+import java.util.Scanner; 
+
 class Play {
     public static void main(String[] args) {
 
@@ -9,7 +11,7 @@ class Play {
         // int playerScore = 0; // the score of the player's cards
         // int dealerScore = 0; // the score of the dealer's cards
 
-        Stack stack = new Stack();
+        // Stack stack = new Stack();
         Card tempCard = new Card();
 
         // Player's turn
@@ -17,6 +19,7 @@ class Play {
             tempCard = stack.giveCard();
             player.takeCard(tempCard);
             System.out.println(player.toString());
+            // Code für Wert von Assen
             drawCounterPlayer++;
         }
 
@@ -38,12 +41,18 @@ class Play {
             // code for restarting game
         }
 
-        /*boolean wannaDraw = true;
+        boolean wannaDraw = true;
         while (wannaDraw) {
-            String readLine()
-            drawCard(card);
-            showCard(card);
-        }*/
+            Scanner playerChoice = new Scanner(System.in);
+            char yesOrNo;
+            System.out.print("Möchtest du eine Karte ziehen? Tippe j oder n: ");
+            yesOrNo = playerChoice.nextChar();
+            if (yesOrNo == "j") {
+                Participant.drawCard();
+                System.out.println("Ok, hier kommt die nächste Karte:" + Card.value + Card.number + Card. color);
+            }
+           
+        }
 
     }
 }                        
