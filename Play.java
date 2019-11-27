@@ -8,15 +8,14 @@ class Play {
 
         int drawCounterPlayer = 0; // limits how often the player draws cards
         int drawCounterDealer = 0; // limits how often the dealer draws cards
-        // int playerScore = 0; // the score of the player's cards
-        // int dealerScore = 0; // the score of the dealer's cards
 
+        // shuffles the card deck
         Stack.shuffle();
 
         // Player's turn
         while (drawCounterPlayer < 2) {
             Card tempCard = Stack.giveCard();
-            player.drawCard(tempCard);
+            player.takeCard(tempCard);
             System.out.println(player.toString());
             // Code für Wert von Assen
             drawCounterPlayer++;
@@ -30,7 +29,7 @@ class Play {
         // Dealer's turn
         while (drawCounterDealer < 2) {
             Card tempCard = Stack.giveCard();
-            dealer.drawCard(tempCard);
+            dealer.takeCard(tempCard);
             System.out.println(dealer.toString());
             drawCounterDealer++;
         }
@@ -47,7 +46,7 @@ class Play {
             System.out.print("Möchtest du eine Karte ziehen? Tippe j oder n: ");
             yesOrNo = playerChoice.nextChar();
             if (yesOrNo == "j") {
-                Participant.drawCard();
+                Participant.takeCard();
                 System.out.println("Ok, hier kommt die nächste Karte:" + Card.value + Card.number + Card. color);
             }
            
