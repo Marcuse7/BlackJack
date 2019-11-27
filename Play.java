@@ -1,8 +1,8 @@
 class Play {
     public static void main(String[] args) {
 
-        Participant dealer = new Participant("Dealer");
-        Participant player = new Participant("Player");
+        Participant dealer = new Participant();
+        Participant player = new Participant();
 
         int drawCounterPlayer = 0; // limits how often the player draws cards
         int drawCounterDealer = 0; // limits how often the dealer draws cards
@@ -40,6 +40,7 @@ class Play {
 
         /*boolean wannaDraw = true;
         while (wannaDraw) {
+            String readLine()
             drawCard(card);
             showCard(card);
         }*/
