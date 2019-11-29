@@ -18,7 +18,6 @@ class Play {
 
         Participant dealer = new Participant();
         Participant player = new Participant();
-        int drawCounterPlayer = 0; // limits how often the player draws cards
         char yesOrNo; // for Player-Inputs
         boolean lost = false;
 
