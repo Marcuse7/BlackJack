@@ -14,7 +14,7 @@ class Play {
 
     public static void GoOn() {
 
-        final String CARD_DOWN = "\u001B[47m\u001B[31m" + new String(new int[] {0x1F0A0}, 0, 1) + " \u001B[0m";
+        final String CARD_DOWN = "\u001B[47m\u001B[34m" + new String(new int[] {0x1F0A0}, 0, 1) + " \u001B[0m";
 
         Participant dealer = new Participant();
         Participant player = new Participant();
