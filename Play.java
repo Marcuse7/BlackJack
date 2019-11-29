@@ -3,13 +3,13 @@ import java.util.Scanner;
 class Play {
 
 	public static void main(String[] args) {
-		char goon = 'j';
-		while (goon == 'j'){
+		char goOn = 'j';
+		while (goOn == 'j'){
 			System.out.print("\033[H\033[2J");
 			GoOn();
 			Scanner playerChoice = new Scanner(System.in);
 	        System.out.print("\nMöchtest du nochmal spielen? Tippe j oder n: ");
-            goon = playerChoice.next().charAt(0);			
+            goOn = playerChoice.next().charAt(0);			
 		}
 	}
 

@@ -7,6 +7,7 @@ public class Stack {
     
     public static void shuffle() {
         // 6 x 52 Blatt (4 Sorten 2 bis Ass)
+        cards.clear();
         int v = 0;
         for (int d = 0; d < 6; d++) {
             for (int c = 0; c < 4; c++) {
