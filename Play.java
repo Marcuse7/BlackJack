@@ -131,7 +131,7 @@ class Play {
                 wannaDraw = false;
             }
         }
-        System.out.println("###############################################################");
+        System.out.println("###############################################################################");
         
         // Wenn noch nicht verloren....
         if (!lost) {
