@@ -26,12 +26,30 @@ class Play {
         Stack.shuffle();
 
         // Player's turn
-        System.out.println("###############################################################################");
-        System.out.println("#                                                                             #");
-        System.out.println("#                            B L A C K   J A C K                              #");
-        System.out.println("#                                                                             #");
-        System.out.println("#                                  Copyright by Kadir, Markus, Thorsten, Timo #");
-        System.out.println("###############################################################################");
+        System.out.println("       ################################################################");
+        System.out.println("       #    ____  _            _    _            _                    #");
+        System.out.println("       #   |  _ \\| |          | |  (_)          | |                   #");
+        System.out.println("       #   | |_) | | __ _  ___| | ___  __ _  ___| | __                #");
+        System.out.println("       #   |  _ <| |/ _` |/ __| |/ / |/ _` |/ __| |/ /                #");
+        System.out.println("       #   | |_) | | (_| | (__|   <| | (_| | (__|   <                 #");
+        System.out.println("       #   |____/|_|\\__,_|\\___|_|\\_\\ |\\__,_|\\___|_|\\_\\                #");
+        System.out.println("       #                          _/ |                                #");
+        System.out.println("       #                         |__/                                 #");
+        System.out.println("       #                                                              #");
+        System.out.println("       #                   Copyright by Kadir, Markus, Thorsten, Timo #");
+        System.out.println("       ################################################################");
+
+
+  
+  
+
+
+
+
+             
+                
+
+
         System.out.println("\nPlayer:");
 
         Card tempCard = Stack.giveCard(); // 1st card
