@@ -1,58 +1,83 @@
 import java.util.Scanner; 
 
 class Play {
-    public static void main(String[] args) {
 
-        final String CARD_DOWN = " \u001B[47m\u001B[31m" + new String(new int[] {0x1F0A0}, 0, 1) + " \u001B[0m";
+	public static void main(String[] args) {
+		char goon = 'j';
+		while (goon == 'j'){
+			GoOn();
+			Scanner playerChoice = new Scanner(System.in);
+	        System.out.print("\nMöchtest du nochmal spielen? Tippe j oder n: ");
+            goon = playerChoice.next().charAt(0);			
+		}
+	}
+
+    public static void GoOn() {
+
+        final String CARD_DOWN = "\u001B[47m\u001B[31m" + new String(new int[] {0x1F0A0}, 0, 1) + " \u001B[0m";
 
         Participant dealer = new Participant();
         Participant player = new Participant();
-
         int drawCounterPlayer = 0; // limits how often the player draws cards
+        char yesOrNo; // for Player-Inputs
+        boolean lost = false;
 
         // shuffles the card deck
         Stack.shuffle();
 
         // Player's turn
+        System.out.println("###############################################################");
         System.out.println("Player:");
-        while (drawCounterPlayer < 2) { // two cards given to player
-            Card tempCard = Stack.giveCard(); // card extracted from stack
-            // System.out.println("Ok, hier kommt die nächste Karte:" + tempCard.getValue() + " - " + tempCard.getNumber() + " - " + tempCard.getColor());
 
-            player.takeCard(tempCard); // this very card given to player
-            System.out.print(player.toString()); // print out hand
-            System.out.println(" " + player.getSum()); // print out sum
-            // Code für Wert von Assen
-            drawCounterPlayer++;
+        Card tempCard = Stack.giveCard(); // 1st card
+
+        if (tempCard.getValue() == 1) {
+        	tempCard.setValue(11);
         }
-        System.out.println();
+        player.takeCard(tempCard); // this very card given to player
+ 		tempCard = Stack.giveCard(); // 2nd card
+        player.takeCard(tempCard); // this very card given to player
+        System.out.print(player.toString()); // print out hand
+        System.out.println(" " + player.getSum()); // print out sums
+
+
+        if (tempCard.getValue() == 1) {
+            Scanner playerChoice = new Scanner(System.in);
+            System.out.printf("Möchtest du das Ass stattdessen als 11 werten lassen (%d)? Tippe j oder n: ", player.getSum() + 10);
+            yesOrNo = playerChoice.next().charAt(0);
+            if (yesOrNo == 'j') {
+            	player.aceEleven();
+            	System.out.println("OK, hier Deine neue Wertung: " + player.toString() + " " + player.getSum()); // print out hand
+            }
+        }
 
         if (player.getSum() > 21) {
             System.out.println("Sorry. You lost!");
-            // code for restarting game
         }
 
-        // Dealer's turn
+
+        // DEALER
+        tempCard = Stack.giveCard(); // 1st card
+        if (tempCard.getValue() == 1) {
+        	tempCard.setValue(11);
+        }
+        dealer.takeCard(tempCard); // this very card given to dealer
         System.out.println("Dealer:");
-        Card tempCard = Stack.giveCard();
-        dealer.takeCard(tempCard);
-        System.out.print(dealer.toString());
-        tempCard = Stack.giveCard();
-        dealer.takeCard(tempCard);
-        System.out.println(CARD_DOWN);
-        System.out.println();
-        
-        if (dealer.getSum() > 21) {
-            System.out.println("The dealer lost! You win!!!");
-            System.out.println("Dealer:");
-            System.out.print(dealer.toString());
-            // code for restarting game
+        System.out.print(dealer.toString()); // print out hand
+ 		System.out.println(CARD_DOWN + " " + dealer.getSum() + " + ?");
+ 		System.out.println("###############################################################");
+
+        tempCard = Stack.giveCard(); // 2nd card
+        dealer.takeCard(tempCard); // this very card given to player
+        if (tempCard.getValue() == 1) {
+			if (dealer.getSum() < 22) {
+			    dealer.aceEleven();        	
+			}            
         }
 
         boolean wannaDraw = true;
         while (wannaDraw) {
             Scanner playerChoice = new Scanner(System.in);
-            char yesOrNo;
             System.out.print("Möchtest du eine Karte ziehen? Tippe j oder n: ");
             yesOrNo = playerChoice.next().charAt(0);
             if (yesOrNo == 'j') {
@@ -62,57 +87,61 @@ class Play {
                 System.out.println("Ok, hier ist dein neues Blatt:");
                 System.out.print(player.toString()); // print out hand
                 System.out.println(" " + player.getSum()); // print out sum
+		        if (tempCard.getValue() == 1) {
+        		    //Scanner playerChoice = new Scanner(System.in);
+            		System.out.printf("Möchtest du das Ass stattdessen als 11 werten lassen (%d)? Tippe j oder n: ", player.getSum() + 10);
+            		yesOrNo = playerChoice.next().charAt(0);
+            		if (yesOrNo == 'j') {
+            			player.aceEleven();
+            			System.out.print("\nOK, hier Deine neue Wertung: " + player.toString() + " " + player.getSum()); // print out hand
+            		}
+        		}
+
                 System.out.println();
 
                 if (player.getSum() > 21) {
-                    System.out.println("Sorry. You lost!");
+                    System.out.println("Sorry, Du hast verloren. :-(");
+                    lost = true;
                     wannaDraw = false;
-                    // code for restarting game
-                }
-
-                //System.out.println("Ok, hier kommt die nächste Karte:" + tempCard.getValue() + tempCard.getNumber() + tempCard.getColor());
+	           	} 
             } else {
                 wannaDraw = false;
             }
-
         }
+        System.out.println("###############################################################");
         
-        // Dealer's turn
-        System.out.println("Dealer:");
-        System.out.print(dealer.toString());
-
-        wannaDraw = true;
-        while (wannaDraw) {
-            if (dealer.getSum() >= 17) {
-            System.out.println("The dealer stops");
-            wannaDraw = false;
-            }
-            else if (dealer.getSum() <= 16) {
-                tempCard = Stack.giveCard();
-                dealer.takeCard(tempCard);
-                System.out.print(dealer.toString());
-                
-                if (dealer.getSum() > 21) {
-                    System.out.println("Du gewinnst mit " + player.getSum() + " " + dealer.getSum());
-            }
-            if (tempCard.getNumber() == 0 && (dealer.getSum() + 11) >= 17 && (dealer.getSum() + 11) <= 21) {
-                wannaDraw = false;
-            }
-            System.out.print(dealer.toString());
-            }
-
-        if (player.getSum() > dealer.getSum()) {
-            System.out.println("Du gewinnst mit " + player.getSum() + " zu " + dealer.getSum());
-            wannaDraw = false;
-        }
-        else if (player.getSum() < dealer.getSum()) {
-            System.out.println("Du verlierst mit " + dealer.getSum() + " zu " + player.getSum());
-            wannaDraw = false;
-        }
-        else {
-
-        }
-
-        }
+        // Wenn noch nicht verloren....
+        if (!lost) {
+	        System.out.println("Dealer:");
+	        System.out.println(dealer.toString() + " " + dealer.getSum());
+	        // Dealer's turn
+	        wannaDraw = true;
+	        while (wannaDraw) {
+	            if (dealer.getSum() >= 17) {
+	            	wannaDraw = false;
+	            } else if (dealer.getSum() <= 16) {
+	                tempCard = Stack.giveCard();
+	                dealer.takeCard(tempCard);
+	                System.out.println("Der Dealer zieht noch eine Karte.");
+	                System.out.println(dealer.toString() + " " + dealer.getSum());
+	            }
+	            if (dealer.getSum() > 21) {
+	                System.out.println("Du gewinnst, weil der Dealer überreizt hat. " + player.getSum() + " zu " + dealer.getSum());
+	                wannaDraw = false;
+	            } else {
+			        if (player.getSum() > dealer.getSum()) {
+			            System.out.println("Du gewinnst mit " + player.getSum() + " zu " + dealer.getSum());
+			            wannaDraw = false;
+			        } else if (player.getSum() < dealer.getSum()) {
+			            System.out.println("Du verlierst mit " + player.getSum() + " zu " + dealer.getSum());
+			            wannaDraw = false;
+			        } else {
+			            System.out.println("Das Spiel war unentschieden: " + dealer.getSum() + " zu " + player.getSum());
+			            wannaDraw = false;
+			        }    
+	            }
+	        }
+	    }
     }
+
 }                        

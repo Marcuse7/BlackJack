@@ -29,6 +29,11 @@ class Participant{
 
     } // Ende takeCard
 
+    public void aceEleven(){
+        cardsHand.get(cardsHand.size() - 1).setValue(11);
+
+    } // Ende aceEleven
+
 
 
 } // Ende class
