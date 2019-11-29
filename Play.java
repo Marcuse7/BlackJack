@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class Play {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		char goOn = 'j';
 		while (goOn == 'j'){
 			System.out.print("\033[H\033[2J");
@@ -13,7 +13,7 @@ class Play {
 		}
 	}
 
-    public static void GoOn() {
+    public static void GoOn() throws InterruptedException {
 
         final String CARD_DOWN = "\u001B[47m\u001B[34m" + new String(new int[] {0x1F0A0}, 0, 1) + " \u001B[0m";
 
@@ -125,22 +125,28 @@ class Play {
 	            if (dealer.getSum() > 16) {
 	            	wannaDraw = false;
 	            } else if (dealer.getSum() < 17) {
+	                Thread.sleep(1000);
 	                tempCard = Stack.giveCard();
 	                dealer.takeCard(tempCard);
 	                System.out.println("Der Dealer zieht noch eine Karte.");
+	                Thread.sleep(1000);
 	                System.out.println(dealer.toString() + " " + dealer.getSum());
 	            }
 	            if (dealer.getSum() > 21) {
+	                Thread.sleep(1000);
 	                System.out.println("Du gewinnst, weil der Dealer überreizt hat. " + player.getSum() + " zu " + dealer.getSum());
 	                wannaDraw = false;
 	            } else if (wannaDraw == false) {
 			        if (player.getSum() > dealer.getSum()) {
+			            Thread.sleep(1000);
 			            System.out.println("Du gewinnst mit " + player.getSum() + " zu " + dealer.getSum());
 			            wannaDraw = false;
 			        } else if (player.getSum() < dealer.getSum()) {
+			            Thread.sleep(1000);
 			            System.out.println("Du verlierst mit " + player.getSum() + " zu " + dealer.getSum());
 			            wannaDraw = false;
 			        } else {
+			            Thread.sleep(1000);
 			            System.out.println("Das Spiel war unentschieden: " + dealer.getSum() + " zu " + player.getSum());
 			            wannaDraw = false;
 			        }    
