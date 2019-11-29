@@ -5,6 +5,7 @@ class Play {
 	public static void main(String[] args) {
 		char goon = 'j';
 		while (goon == 'j'){
+			System.out.print("\033[H\033[2J");
 			GoOn();
 			Scanner playerChoice = new Scanner(System.in);
 	        System.out.print("\nMöchtest du nochmal spielen? Tippe j oder n: ");
@@ -25,8 +26,13 @@ class Play {
         Stack.shuffle();
 
         // Player's turn
-        System.out.println("###############################################################");
-        System.out.println("Player:");
+        System.out.println("###############################################################################");
+        System.out.println("#                                                                             #");
+        System.out.println("#                            B L A C K   J A C K                              #");
+        System.out.println("#                                                                             #");
+        System.out.println("#                                  Copyright by Kadir, Markus, Thorsten, Timo #");
+        System.out.println("###############################################################################");
+        System.out.println("\nPlayer:");
 
         Card tempCard = Stack.giveCard(); // 1st card
 
@@ -64,7 +70,7 @@ class Play {
         System.out.println("Dealer:");
         System.out.print(dealer.toString()); // print out hand
  		System.out.println(CARD_DOWN + " " + dealer.getSum() + " + ?");
- 		System.out.println("###############################################################");
+ 		System.out.println("\n###############################################################################\n");
 
         tempCard = Stack.giveCard(); // 2nd card
         dealer.takeCard(tempCard); // this very card given to player
@@ -116,9 +122,9 @@ class Play {
 	        // Dealer's turn
 	        wannaDraw = true;
 	        while (wannaDraw) {
-	            if (dealer.getSum() >= 17) {
+	            if (dealer.getSum() > 16) {
 	            	wannaDraw = false;
-	            } else if (dealer.getSum() <= 16) {
+	            } else if (dealer.getSum() < 17) {
 	                tempCard = Stack.giveCard();
 	                dealer.takeCard(tempCard);
 	                System.out.println("Der Dealer zieht noch eine Karte.");
@@ -127,7 +133,7 @@ class Play {
 	            if (dealer.getSum() > 21) {
 	                System.out.println("Du gewinnst, weil der Dealer überreizt hat. " + player.getSum() + " zu " + dealer.getSum());
 	                wannaDraw = false;
-	            } else {
+	            } else if (wannaDraw == false) {
 			        if (player.getSum() > dealer.getSum()) {
 			            System.out.println("Du gewinnst mit " + player.getSum() + " zu " + dealer.getSum());
 			            wannaDraw = false;
